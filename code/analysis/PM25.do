@@ -205,7 +205,7 @@ local ld2  firstwave  secondwave highpm25 un highpm25_un firstwave_highpm second
 **************************
 **   DDD Specification  **
 **************************
- reghdfe lnsr_ad `ld2'  ,absorb( i.yearid*##i.prefectureid*  i.monthid*##i.prefectureid*  yearid* prefectureid* monthid*) 
+quietly reghdfe lnsr_ad `ld2'  ,absorb( i.yearid*##i.prefectureid*  i.monthid*##i.prefectureid*  yearid* prefectureid* monthid*) 
 eststo ad_ddd 
 quietly reghdfe lnsr_ch `ld2'   , absorb( i.yearid*##i.prefectureid*  i.monthid*##i.prefectureid*  yearid* prefectureid* monthid*) 
 eststo ch_ddd 
