@@ -1,6 +1,6 @@
 clear all
 set seed 999
-use "C:\Users\managi-lab\Dropbox (managi-lab)\M2フォルダ\Okuyama\Air_pollution\submission\data\raw_data\working_data\working_data.dta"
+use "D:\Dropbox (managi-lab)\M2フォルダ\Okuyama\Air_pollution\GitHub-code&data\data\raw_data\working_data\working_data.dta"
 
 *generate COVID lockdown variable
 gen lockdown=0
@@ -176,7 +176,7 @@ sum lnsr_school
 *drop missing variables 
 drop if PM25_mean==.
 
-
+drop if lnsr_ad==.
 
 *change name
 rename ddd1 firstlockdown_highpm_un 
@@ -205,7 +205,7 @@ local ld2  firstwave  secondwave highpm25 un highpm25_un firstwave_highpm second
 **************************
 **   DDD Specification  **
 **************************
-quietly reghdfe lnsr_ad `ld2'  ,absorb( i.yearid*##i.prefectureid*  i.monthid*##i.prefectureid*  yearid* prefectureid* monthid*) 
+ reghdfe lnsr_ad `ld2'  ,absorb( i.yearid*##i.prefectureid*  i.monthid*##i.prefectureid*  yearid* prefectureid* monthid*) 
 eststo ad_ddd 
 quietly reghdfe lnsr_ch `ld2'   , absorb( i.yearid*##i.prefectureid*  i.monthid*##i.prefectureid*  yearid* prefectureid* monthid*) 
 eststo ch_ddd 
@@ -220,7 +220,7 @@ eststo ad_women_ddd
 quietly reghdfe lnsr_ch_women `ld2'   , absorb( i.yearid*##i.prefectureid*  i.monthid*##i.prefectureid*  yearid* prefectureid* monthid*)   
 eststo ch_women_ddd 
 
-esttab ad_ddd ch_ddd ad_men_ddd ch_men_ddd ad_women_ddd ch_women_ddd using PM25_DDD_result.tex, b(4) se r2 star(* 0.10 ** 0.05 *** 0.05) title(DDD Estimation (PM2.5)) replace
+*esttab ad_ddd ch_ddd ad_men_ddd ch_men_ddd ad_women_ddd ch_women_ddd using PM25_DDD_result.tex, b(4) se r2 star(* 0.10 ** 0.05 *** 0.05) title(DDD Estimation (PM2.5)) replace
 
 esttab ad_ddd ch_ddd ad_men_ddd ch_men_ddd ad_women_ddd ch_women_ddd,  star(* 0.10 ** 0.05 *** 0.05)   r2 se
 
