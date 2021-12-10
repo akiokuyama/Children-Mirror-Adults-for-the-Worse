@@ -1,6 +1,6 @@
 clear all
 set seed 999
-use "C:\Users\managi-lab\Dropbox (managi-lab)\M2フォルダ\Okuyama\Air_pollution\submission\data\raw_data\working_data\working_data.dta"
+use "D:\Dropbox (managi-lab)\M2フォルダ\Okuyama\Air_pollution\GitHub-code&data\data\raw_data\working_data\working_data.dta"
 
 *generate COVID lockdown variable
 gen lockdown=0
@@ -176,6 +176,7 @@ sum lnsr_school
 *drop missing variables 
 drop if PM25_mean==.
 
+drop if lnsr_ad==.
 
 
 *change name
@@ -197,7 +198,7 @@ rename firstlockdown_un firstwave_un
 rename secondlockdown_un secondwave_un
 
 
-save "C:\Users\managi-lab\Dropbox (managi-lab)\M2フォルダ\Okuyama\Air_pollution\submission\data\raw_data\working_data\descriptive_statistics", replace
+save "D:\Dropbox (managi-lab)\M2フォルダ\Okuyama\Air_pollution\GitHub-code&data\data\raw_data\working_data\descriptive_statistics", replace
 
 
 
